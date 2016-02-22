@@ -86,6 +86,15 @@
       width: 20%;
 }
 
+.search_form {
+  font-size: 1.0vw;
+   position: absolute;
+       left: 5px;
+     bottom: 5px;
+  background-color:grey; 
+  border: solid 1px #6E6E6E;
+}
+
 #speech_container {
     position: absolute;
     left:20%;

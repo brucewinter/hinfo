@@ -1,19 +1,19 @@
 <!doctype>
 <head>
   <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">
-  <link type="text/css" rel="stylesheet" href="./hinfo/css/graph.css">
-  <link type="text/css" rel="stylesheet" href="./hinfo/css/detail.css">
-  <link type="text/css" rel="stylesheet" href="./hinfo/css/legend.css">
+  <link type="text/css" rel="stylesheet" href="./info/css/graph.css">
+  <link type="text/css" rel="stylesheet" href="./info/css/detail.css">
+  <link type="text/css" rel="stylesheet" href="./info/css/legend.css">
 
-  <link type="text/css" rel="stylesheet" href="./hinfo/css/hinfo.css">
+  <link type="text/css" rel="stylesheet" href="./info/css/info.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
   <script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.3.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
-  <script src="./hinfo/vendor/d3.js"></script>
-  <script src="./hinfo/vendor/rickshaw.js"></script>
-  <script src="./hinfo/vendor/moment.js"></script>
+  <script src="./info/vendor/d3.js"></script>
+  <script src="./info/vendor/rickshaw.js"></script>
+  <script src="./info/vendor/moment.js"></script>
 </head>
 
 <body style="background-color: #2C3539">  <!-- pick color with: http://www.computerhope.com/cgi-bin/htmlcolor.pl?c=2C3539-->
@@ -29,20 +29,21 @@
     <div id="mychart"></div>
     <div id="legend"></div>
   </div>
+  <div> <input class="search_form" type="text" name="search_text" id="search_text_id" size="5"> </div>
   <div id="slide_container" class="slide1"><img height=100% width=auto name="myslide" onclick="slide_pause()"><div id="slide_label"></div></div>
 
-  <script src="./hinfo/config.js"></script>
-  <script src="./hinfo/clock.js"></script>
-  <script src="./hinfo/slides.js"></script>
-  <script src="./hinfo/camera.js"></script>
-  <script src="./hinfo/forecast.js"></script>
-  <script src="./hinfo/pushbullet.js"></script>
-  <script src="./hinfo/plotit.js"></script>
+
+  <script src="./info/config.js"></script>
+  <script src="./info/clock.js"></script>
+  <script src="./info/slides.js"></script>
+  <script src="./info/camera.js"></script>
+  <script src="./info/forecast.js"></script>
+  <script src="./info/pushbullet.js"></script>
+  <script src="./info/plotit.js"></script>
 
 </body>
 
 <!--
-    <div id="search_form"> <input type="text" name="search_text" id="search_text_id" style="font-size:2vw" size="10"> </div>
 
       <div id="date_form_container"  style="font-size:2vw;color:#00aaff;  ">
         <form id="date_form" action="" method="GET">  

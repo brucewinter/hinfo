@@ -1,15 +1,15 @@
 // Use this on windows to prune to just jpg files and maintiain file structure:  ROBOCOPY F:\Pictures F:\Pictures_Only *.jpg /S
 // Images must be preloaded.  Limit to around 200 so it fits on small memory browsers.  Randomize when loading, parent page will periodically reload itself.
 
-var slidecount1    =    200
+var slidecount1    =    100
 var slidelist      = 'picture_index.txt'
 //var slideshowspeed = 3000  // slide speed set in css animation
 
-var slideimages
-var slidelabels
+var slideimages = []
+var slidelabels = []
 
 // This function requires an index file of all the photos.  This way we can keep origional dir structure and file names
-var pic_list = new Array();
+var pic_list = []
 function read_list(search_string) {
     console.log("Loading slidelist");
     $.ajax({
@@ -24,7 +24,7 @@ function read_list(search_string) {
 
 var whichimage
 function search_list(search_string) {
-    var pic_list2 = new Array();
+    var pic_list2 = []
     if (search_string == "") {
 	console.log("db1");
 	pic_list2 = pic_list
@@ -37,10 +37,11 @@ function search_list(search_string) {
 		pic_list2.push(pic_list[i])
             }
 	}
+	slidecount1    =    50 // loads faster
     }
     var slidecount2 = pic_list2.length
-    slideimages = new Array()
-    slidelabels = new Array()
+    slideimages = [];
+    slidelabels = [];
     console.log("Slide count: " + slidecount2)
     for (i=0; i<slidecount1; i++) {
 	if (i > slidecount2) {break}
@@ -52,6 +53,8 @@ function search_list(search_string) {
 //	console.log("i=" + i + " j=" + j + " p=" + pic_list2[j]);
     }
     whichimage = 1
+    if (search_string != "") slide_pause('right');
+
 }
 
 read_list();
@@ -94,7 +97,7 @@ function slide_pause(key) {
 	}
 	slide_photo();
     }
-//  console.log("slide: " + whichimage + key);
+  console.log("slide: " + whichimage + key);
     document.getElementById("slide_container").className = "paused";
     clearTimeout(slide_pause_timer);
     slide_pause_timer = setTimeout("slide_resume()",30000)
