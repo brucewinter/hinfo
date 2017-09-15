@@ -6,7 +6,8 @@ function forecast1() {
 	unit: 'f',
 	success: function(weather) {
 	    html = '<pre>';
-	    for(var i=0; i<weather.forecast.length; i++) {
+//	    for(var i=0; i<weather.forecast.length; i++) {
+	    for(var i=0; i<3; i++) {
 		html += weather.forecast[i].day + ': ' + weather.forecast[i].high + '/' + weather.forecast[i].low + ' ' + weather.forecast[i].text + '<br>';
 	    }
 	    html += '</pre>';

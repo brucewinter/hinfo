@@ -1,12 +1,18 @@
 // Use this on windows to prune to just jpg files and maintiain file structure:  ROBOCOPY F:\Pictures F:\Pictures_Only *.jpg /S
 // Images must be preloaded.  Limit to around 200 so it fits on small memory browsers.  Randomize when loading, parent page will periodically reload itself.
 
-var slidecount1    =    100
+var slidecount1    =    50
+//var slidecount1    =    100
 var slidelist      = 'picture_index.txt'
-//var slideshowspeed = 3000  // slide speed set in css animation
+var slideshowspeed = 30000  // slide speed set, used if browser has no animation support
 
 var slideimages = []
 var slidelabels = []
+
+var animation = false,
+animationstring = 'animation', keyframeprefix = '', domPrefixes = 'Webkit Moz O ms Khtml'.split(' '), pfx  = '', elm = document.createElement('div');
+if( elm.style.animationName !== undefined ) { animation = true; }    
+
 
 // This function requires an index file of all the photos.  This way we can keep origional dir structure and file names
 var pic_list = []
@@ -44,13 +50,21 @@ function search_list(search_string) {
     slidelabels = [];
     console.log("Slide count: " + slidecount2)
     for (i=0; i<slidecount1; i++) {
-	if (i > slidecount2) {break}
-	var j = Math.floor((Math.random() * slidecount2) + 1)
+	if (i >= slidecount2) {break}
+	var j
+	if (slidecount1 < slidecount2) {
+	    j = Math.floor((Math.random() * slidecount2))
+	}
+	else {
+	    j = i
+	}
 	slideimages[i] = new Image()
+	console.log("i=" + i + " j=" + j)
 	var pic = pic_list2[j].replace("/var/www/html/", "")
 	slideimages[i].src = "/" + pic
-	slidelabels[i]     = pic.replace("Pictures/", "")
-//	console.log("i=" + i + " j=" + j + " p=" + pic_list2[j]);
+	var prefix = i + "/" + slidecount1 + "/" + slidecount2 + ": "
+	slidelabels[i]     = pic.replace("Pictures/", prefix)
+	console.log("i=" + i + " j=" + j + " p=" + pic_list2[j]);
     }
     whichimage = 1
     if (search_string != "") slide_pause('right');
@@ -74,8 +88,9 @@ function slideit() {
     if (++whichimage > slideimages.length-1) { whichimage = 1 }
     slide_photo();
     console.log("db slideit " + whichimage + slideimages[whichimage].src);
-//  setTimeout("slideit()",slideshowspeed)
-
+    if( animation === false ) {
+	setTimeout("slideit()",slideshowspeed)
+    }
 }
 
 function slide_photo() {

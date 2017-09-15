@@ -7,7 +7,7 @@ var graph;
 var feed;
 var channels;
 var days_ago = 0;
-var days_len = 0.5;
+var days_len = 1.0;
 var scale_solar = 0;
 var reload_time = 1000*3600*8;  // Periodic page refresh
 
@@ -90,6 +90,19 @@ function loadData(data) {
 	    if (id == 'Temperature1') {id = 'Outside'}
 	    if (id == 'Temperature2') {id = 'Basement'}
 	    if (id == 'Temperature3') {id = 'Upstairs'}
+
+	    if (id == 'Temp_rdeck')        {id = 'Temp_Out1'}
+	    if (id == 'Temp_rtreehouse')   {id = 'Temp_Out2'}
+	    if (id == 'TempHI_rtreehouse') {id = 'TempHI_Out2'}
+	    if (id == 'Temp_rkitchen')     {id = 'Temp_Up'}
+	    if (id == 'Temp_rdownstairs')  {id = 'Temp_Down'}
+	    if (id == 'Temp_rbedroom')     {id = 'Temp_Bed'}
+	    if (id == 'Humid_rdeck')       {id = 'Humid_Out1'}
+	    if (id == 'Humid_rtreehouse')  {id = 'Humid_Out2'}
+	    if (id == 'Humid_rkitchen')    {id = 'Humid_Up'}
+	    if (id == 'Humid_rdownstairs') {id = 'Humid_Down'}
+	    if (id == 'Humid_rbedroom')    {id = 'Humid_Bed'}
+
 	    if (id == 'Power') {
 		series.push({name: id, color: palette.color(), data: [], scale: scale2});
 	    }
@@ -168,6 +181,7 @@ function drawGraph(data) {
 
     var resize = function() {
 	graph.configure({
+#	    width:   .95 * window.innerWidth,
 	    width:   .97 * window.innerWidth,
 	    height:  .97 * window.innerHeight
 	});
@@ -240,5 +254,7 @@ function clearGraph() {
 }
 
 xively.setKey( xively_key );  
-plotit('12256388', 'Power,Temp_Out,Temp_Up,Temp_Down');
-
+//plotit('12256388', 'Power,Temp_Out,Temp_Up,Temp_Down,Temp_rpi1,Temp_rpi2,Temp_rpi3,Humid_Out,Humid_Up,Humid_Down');
+//plotit('12256388', 'Power,Temp_rpi1,Temp_rpi2,Temp_rpi3,Temp_rpi5,Humid_rpi1,Humid_rpi5');
+//plotit('156182029', 'Power,Temp_rdeck,Temp_rtreehouse,Temp_Solar,Temp_rkitchen,TempHI_rtreehouse,Temp_rbedroom,Temp_rdownstairs,Humid_rtreehouse,Humid_rkitchen,Humid_rdownstairs');
+plotit('156182029', 'Power,Temp_Outside,Temp_Ceiling,Temp_Bedroom,Temp_Downstairs,Humid_Outside,Humid_Bedroom');
