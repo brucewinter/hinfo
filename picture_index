@@ -1,0 +1,10 @@
+
+echo "picture_index: Creating photo and video index files"
+
+find /mnt/photo                           -follow -size +20k -iregex ".*\.\(jpg\|gif\|png\|jpeg\|bmp\)" -print | \
+     grep -v '/Raw/' | grep -v '/small_versions/' | grep -v '/private/' | sort > ~/mh/www/picture_index.txt
+
+/home/bruce/bin/video_index.pl
+
+echo "picture_index done"
+
